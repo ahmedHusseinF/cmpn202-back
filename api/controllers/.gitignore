@@ -1,0 +1,11 @@
+*.js
+*.js.map
+
+management/*.js
+management/*.js.map
+
+organizations/*.js
+organizations/*.js.map
+
+requests/*.js
+requests/*.js.map

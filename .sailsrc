@@ -1,0 +1,11 @@
+{
+  "generators": {
+    "modules": {
+      "ts-controller":"./generators/sails-controller-ts",
+      "ts-service":"./generators/ts-service",
+      "declarations":"./generators/declarations",
+      "route":"./generators/route",
+      "seed":"./generators/seed"
+    }
+  }
+}
