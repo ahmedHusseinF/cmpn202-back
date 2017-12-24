@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const util = require("util");
 /**
  * AuthController
@@ -10,11 +10,9 @@ class AuthController {
 
   constructor() {}
 
-  async login(req: Request, res: Response) {
+  login(req: Request, res: Response) {
     var email = req.body.email;
     var password = req.body.password;
-
-    //username = username.toLowerCase();
 
     if (!email || !password)
       return res.status(400).send({ message: "missing paramter" });

@@ -24,7 +24,7 @@
     "@types/uuid": "^3.4.0",
     "@types/waterline": "https://registry.npmjs.org/@types/waterline/-/waterline-0.11.2.tgz",
     "babel-eslint": "^7.2.3",
-    "bcrypt": "^1.0.3",
+    "bcryptjs": "^2.4.3",
     "bluebird": "https://registry.npmjs.org/bluebird/-/bluebird-3.5.0.tgz",
     "ejs": "2.3.4",
     "ejs-locals": "https://registry.npmjs.org/ejs-locals/-/ejs-locals-1.0.2.tgz",

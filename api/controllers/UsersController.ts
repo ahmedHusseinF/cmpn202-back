@@ -1,7 +1,6 @@
 import { MysqlError } from "mysql";
-const bcryptt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const indicative = require("indicative");
-//const bcrypt = require('bcrypt');
 
 class UsersController {
   checkNatID(req: Request, res: Response) {
@@ -65,7 +64,7 @@ class UsersController {
       indicative
         .validateAll(params, rules)
         .then(() => {
-          bcryptt.hash(params.Password, 10, (err: Error, hash: string) => {
+          bcrypt.hash(params.Password, 10, (err: Error, hash: string) => {
             if (err) {
               throw err;
             }
@@ -193,12 +192,10 @@ class UsersController {
         TelNo: "regex:^[0-9]+$"
       };
 
-      const messeges = {};
-
       indicative
         .validateAll(params, rules)
         .then(() => {
-          bcryptt.hash(params.Password, 10, (err: Error, hash: string) => {
+          bcrypt.hash(params.Password, 10, (err: Error, hash: string) => {
             if (err) {
               throw err;
             }
@@ -276,26 +273,6 @@ class UsersController {
             error
           });
         });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send({ error });
-    }
-  }
-
-  getALlFactoryIDs(req: Request, res: Response) {
-    try {
-      mysqlConnection.query(
-        `select FactoryID, FName from Factory`,
-        (err, results) => {
-          if (err) {
-            throw err;
-          }
-
-          return res.status(200).send({
-            results
-          });
-        }
-      );
     } catch (error) {
       console.error(error);
       return res.status(500).send({ error });

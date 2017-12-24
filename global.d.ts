@@ -1,19 +1,13 @@
-import { EventEmitter } from 'events';
-import * as express from 'express';
-import { Stream } from 'stream';
-import * as waterline from 'waterline';
+import { EventEmitter } from "events";
+import * as express from "express";
+import { Stream } from "stream";
+import * as waterline from "waterline";
 
-import { Mailservice } from './api/services/MailService';
-//import { Organizationservice } from './api/services/OrganizationService';
-import { Userservice } from './api/services/UserService';
-//import { ClusterService } from './api/services/ClusterService';
-// import * as knex from 'knex';
-import * as Bluebird from 'bluebird';
-import { Utilservice } from './api/services/UtilService';
-//import { RequestsService } from './api/services/RequestsService';
-//import { TransactionsService } from './api/services/TransactionsService';
-//import { MerchantService } from './api/services/MerchantService';
-import * as mysql from 'mysql';
+import { Mailservice } from "./api/services/MailService";
+import { Userservice } from "./api/services/UserService";
+import * as Bluebird from "bluebird";
+import { Utilservice } from "./api/services/UtilService";
+import * as mysql from "mysql";
 
 declare global {
   var sails: sails;
@@ -22,55 +16,54 @@ declare global {
   var res: Response;
   var _: _.LoDashStatic;
   var mysqlConnection: mysql.Connection;
-  // var knex: knex;
 
   export interface sails extends EventEmitter {
     config: config;
 
     /**
-			 * @description There are mulitple available events that are already registered by sails
-			 * event name | emitted when
-			 * ready      |  The app has been loaded and the bootstrap has run, but it is not yet listening for requests
-			 *
-			 * lifted     |  The app has been lifted and is listening for requests.
-			 *
-			 * lower      |  The app has is lowering and will stop listening for requests.
-			 *
-			 *
-			 * hook:<hook identity>:loaded | The hook with the specified identity loaded and ran its initialize() method successfully.
-			 */
+     * @description There are mulitple available events that are already registered by sails
+     * event name | emitted when
+     * ready      |  The app has been loaded and the bootstrap has run, but it is not yet listening for requests
+     *
+     * lifted     |  The app has been lifted and is listening for requests.
+     *
+     * lower      |  The app has is lowering and will stop listening for requests.
+     *
+     *
+     * hook:<hook identity>:loaded | The hook with the specified identity loaded and ran its initialize() method successfully.
+     */
     on(event: string | symbol, listener: (...args: any[]) => void): this;
 
     /**
-			 * @description Look up the first route pointing at the specified target (e.g. MeController.login) and return a dictionary containing its method and URL
-			 *
-			 * target : The route target string; e.g. MeController.login
-			 */
+     * @description Look up the first route pointing at the specified target (e.g. MeController.login) and return a dictionary containing its method and URL
+     *
+     * target : The route target string; e.g. MeController.login
+     */
     getRouteFor(target: string): dynamicObjects;
 
     /**
-			 * @description Look up the first route pointing at the specified target (e.g. MeController.login) and return its URL.
-			 */
+     * @description Look up the first route pointing at the specified target (e.g. MeController.login) and return its URL.
+     */
     getUrlFor(target: string): string;
 
     /**
-			 * @description
-			 * configOverrides: A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files. If provided, this will be merged on top of sails.config.
-			 *
-			 * This does exactly what you might be used to seeing by now when you run sails lift.
-			 * It loads the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.
-			 * Useful for building top-to-bottom integration tests that rely on HTTP requests,
-			 * and for building higher-level tooling on top of Sails.
-			 */
+     * @description
+     * configOverrides: A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files. If provided, this will be merged on top of sails.config.
+     *
+     * This does exactly what you might be used to seeing by now when you run sails lift.
+     * It loads the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.
+     * Useful for building top-to-bottom integration tests that rely on HTTP requests,
+     * and for building higher-level tooling on top of Sails.
+     */
     lift(configOverrides: dynamicObjects, err: errorCallback): void;
 
     /**
-			 * @description
-			 * This does exactly what you might be used to seeing by now when you run sails lift.
-			 * It loads the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.
-			 * Useful for building top-to-bottom integration tests that rely on HTTP requests,
-			 * and for building higher-level tooling on top of Sails.
-			 */
+     * @description
+     * This does exactly what you might be used to seeing by now when you run sails lift.
+     * It loads the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.
+     * Useful for building top-to-bottom integration tests that rely on HTTP requests,
+     * and for building higher-level tooling on top of Sails.
+     */
     lift(err: errorCallback): void;
 
     load(): void;
@@ -80,8 +73,8 @@ declare global {
     lower(callback: Function): void;
 
     /**
-			 * @description Make a virtual request to a running Sails instance.
-			 */
+     * @description Make a virtual request to a running Sails instance.
+     */
     request(request: object): Stream;
     request(url: string, callback: Function): Stream;
     request(url: string, body: dynamicObjects): Stream;
@@ -229,31 +222,31 @@ declare global {
     json(status: number, object: dynamicObjects): any;
 
     /**
-				 * @description With no pathToView argument, res.view() will decide the path by combining the identity of the controller (user) and the name of the action (show):
-				 */
+     * @description With no pathToView argument, res.view() will decide the path by combining the identity of the controller (user) and the name of the action (show):
+     */
     view(): any;
     [key: string]: any;
   }
 
   /**
-	   * GENERATED COMMENT FOR MODELS
-	   *
-	   */
-  
+   * GENERATED COMMENT FOR MODELS
+   *
+   */
+
   //<models here>
 
   /**
-	 * GENERATED COMMENT FOR SERVICES
-	 */
+   * GENERATED COMMENT FOR SERVICES
+   */
   var UserService: Userservice;
   var UtilService: Utilservice;
   var ConstantService: Constantservice;
   var CipherService: Cipherservice;
-//  var RequestsService: RequestsService;
-//  var TransactionsService: TransactionsService;
-//  var OrganizationService: Organizationservice;
-//  var MerchantService: MerchantService;
+  //  var RequestsService: RequestsService;
+  //  var TransactionsService: TransactionsService;
+  //  var OrganizationService: Organizationservice;
+  //  var MerchantService: MerchantService;
   var MailService: Mailservice;
-//  var ClusterService: ClusterService;
+  //  var ClusterService: ClusterService;
   //<services here>
 }
