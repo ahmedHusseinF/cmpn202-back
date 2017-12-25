@@ -32,15 +32,7 @@ module.exports.bootstrap = function(cb) {
   });
 
   process.on("unhandledException", err => {
-    mysqlConnection.query(
-      `insert into ErrorLog set Error = '${err.message}, Stack='${err.stack}''`,
-      (err, results) => {
-        if (err) {
-          console.error(`err within err, thats errception`, err);
-        }
-        console.log("err evaded");
-      }
-    );
+    console.error(err);
   });
 
   // It's very important to trigger this callback method when you are finished
